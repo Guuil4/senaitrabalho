@@ -7,8 +7,8 @@
   <link href="plug.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-        <div id="MyClockDisplay" class="clock" onload="showTime()"></div> 
-        <script src="clock.js"></script>
+  <div id="MyClockDisplay" class="clock" onload="showTime()"></div> 
+  <script src="clock.js"></script>
   <header>
     <div class="logo">
       <img src="logo.png" alt="Logo da Empresa">
@@ -16,8 +16,8 @@
     <nav>
       <ul>
         <li><a href="#" class="menu">Início</a></li>
-        <li><a href="#" class="menu"> Admistração</a></li>
-        <li><a href="#"class="menu">Bater Ponto</a></li>
+        <li><a href="#" class="menu">Administração</a></li>
+        <li><a href="#" class="menu">Bater Ponto</a></li>
       </ul>
     </nav>
   </header>
@@ -25,19 +25,20 @@
   <section class="login">
     <div class="login-content">
       <h1>Faça login</h1>
-      <form>
-        <input type="text" placeholder="Nome de usuário">
-        <input type="password" placeholder="Senha">
+      <form onsubmit="event.preventDefault(); login()">
+        <input type="text" placeholder="Nome de usuário" id="username">
+        <input type="password" placeholder="Senha" id="password">
         <button type="submit">Entrar</button>
       </form>
       <p>Não tem uma conta? <a href="#">Crie uma agora</a></p>
+      <div id="login-messages"></div>
     </div>
   </section>
   
   <div class="hero">
     <div class="hero-content">
-      <h1>Bem-vindo ao Nosso Site de ponto</h1>
-      <p>Oferecemos soluções inovadoras para o seu negócio e organização da sua empresas</p>
+      <h1>Bem-vindo ao Nosso Site de Ponto</h1>
+      <p>Oferecemos soluções inovadoras para o seu negócio e organização da sua empresa</p>
       <a href="#" class="btn">Saiba Mais</a>
     </div>
   </div>
@@ -56,3 +57,24 @@
     <div class="feature">
       <img src="feature3.png" alt="Recurso 3">
       <h2>Interface Amigável</h2>
+      <p>Oferecemos uma interface intuitiva e fácil de usar.</p>
+    </div>
+  </div>
+
+  <script>
+    function login() {
+      var username = document.getElementById("username").value;
+      var password = document.getElementById("password").value;
+      var loginMessages = document.getElementById("login-messages");
+
+
+      if (username === "admin" && password === "123456") {
+        loginMessages.innerHTML = "<p class='success'>Login realizado com sucesso!</p>";
+        window.location.href = "BaterPonto.html";
+      } else {
+        loginMessages.innerHTML = "<p class='error'>Nome de usuário ou senha inválidos.</p>";
+      }
+    }
+  </script>
+</body>
+</html>

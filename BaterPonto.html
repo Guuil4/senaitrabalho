@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bater Ponto</title>
+  <link href="Bater.css" rel="stylesheet" type="text/css">
+</head>
+  <script>
+    var horarioInicio;
+    var horarioParada;
+    var historico = [];
+
+    function iniciarHorario() {
+      horarioInicio = new Date().toLocaleTimeString();
+      document.getElementById("horario-inicio").innerHTML = horarioInicio;
+    }
+
+    function pararHorario() {
+      horarioParada = new Date().toLocaleTimeString();
+      document.getElementById("horario-parada").innerHTML = horarioParada;
+
+      var nome = document.getElementById("nome").value;
+      var registro = nome + " - " + horarioInicio + " - " + horarioParada;
+      historico.push(registro);
+
+      atualizarHistorico();
+    }
+
+    function atualizarHistorico() {
+      var historicoHtml = "";
+
+      for (var i = 0; i < historico.length; i++) {
+        historicoHtml += "<li>" + historico[i] + "</li>";
+      }
+
+      document.getElementById("historico").innerHTML = historicoHtml;
+    }
+
+    function limparHistorico() {
+      historico = [];
+      atualizarHistorico();
+    }
+  </script>
+<body>
+  <div class="logo-container">
+    <img src="logo.png" alt="Logo">
+  <h1>Bater Ponto</h1>
+  <h2>Todos seus horarios serão enviados para empresa altomaticamente.</h2>
+
+  <input type="text" id="nome" placeholder="Digite seu nome">
+  <br><br>
+  <button onclick="iniciarHorario()">Iniciar</button>
+  <button onclick="pararHorario()">Parar</button>
+  <button onclick="limparHistorico()">Limpar Histórico</button>
+
+  <p>Horário de início: <span id="horario-inicio"></span></p>
+  <p>Horário de parada: <span id="horario-parada"></span></p>
+
+  <h2>Histórico:</h2>
+  <ul id="historico"></ul>
+</body>
+</html>
